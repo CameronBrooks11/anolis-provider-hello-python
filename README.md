@@ -1,88 +1,33 @@
-# anolis-provider-template-python
+# anolis-provider-hello-python
 
-A template for an [Anolis](https://github.com/anolishq/anolis) device provider
-in Python, built on the
-[Python provider SDK](https://github.com/anolishq/anolis-provider-sdk-python).
-It runs as is: each configured device is a simulated heater, so it needs no
-hardware. Replace the heater with your device and keep the rest.
+An [Anolis](https://github.com/anolishq/anolis) device provider generated from
+[anolis-provider-template-python](https://github.com/anolishq/anolis-provider-template-python)
+on a personal account, outside the anolishq organisation. It is the template's
+simulated heater, renamed with `scripts/rename.sh hello-python` and otherwise
+unchanged.
 
-What it gives you, all passing in CI:
+It exists as evidence that a provider started from the template:
 
-- A provider that passes the
-  [anolis-protocol](https://github.com/anolishq/anolis-protocol) conformance
-  harness at level 2 with no skips.
-- A frozen single-file binary for linux x86_64 and arm64, also run under the
-  harness.
-- A release workflow that publishes what
-  [`install.sh`](https://github.com/anolishq/anolis/blob/main/docs/deploy/install-sh.md#what-a-provider-release-must-provide)
-  and the Workbench read, so a machine profile can pin your repository from any
-  GitHub account.
+- builds, passes the conformance harness and releases in an account that has
+  none of anolishq's secrets, apps, rulesets or reusable workflows;
+- installs on a machine through an unchanged `install.sh` and
+  `anolis-workbench provider import --repo`, pinned from this account.
 
-CI and release depend on nothing of anolishq's beyond public releases, so the
-same workflows run in your account.
-
-## Start a provider from it
-
-1. Click **Use this template** and create your repository.
-2. Rename it to your provider's kind, which must use `a-z`, `0-9` and `-` and
-   start with a letter:
-
-   ```sh
-   scripts/rename.sh bme280-lab   # binary: anolis-provider-bme280-lab
-   ```
-
-3. Change `.github/CODEOWNERS` to your account, and this README to describe
-   your provider.
-4. Replace the heater in `src/<package>/provider.py` with your device: declare
-   its signals and functions, its config, and `read`, `call` and `stop`. The
-   [provider guide](https://github.com/anolishq/anolis-provider-sdk-python/blob/main/docs/writing-a-provider.md)
-   covers each, and its "Vendor drivers" section covers wrapping a vendor's
-   driver library.
-5. Keep `config/conformance.yaml` runnable without hardware (a mock mode), so
-   the harness and CI can drive your provider anywhere.
-6. Check and test:
-
-   ```sh
-   just setup
-   just check
-   just test
-   ```
-
-7. Release: set `version` in `pyproject.toml`, then push a matching tag
-   (`v0.1.0`).
-
-## The device
-
-`heater` has a first-order thermal model. Its temperature approaches
-`ambient_c` plus `max_rise_c` times the power level, with a 60 s time
-constant, and it counts the energy it draws at `rated_w`.
-
-| Signal | Type | |
-| --- | --- | --- |
-| `temperature` | double, degC | |
-| `power` | double, 0 to 1 | |
-| `energy` | double, J | not in the default set |
-
-| Function | Category | |
-| --- | --- | --- |
-| `set_power(power: 0..1)` | ACTUATE | 0 is the safe state, so the runtime can stop it |
-| `reset_energy()` | CONFIG | returns the energy count it cleared |
-
-The provider turns every heater off when it exits, however the session ends.
+Once that is recorded, this repository is archived: read-only, with its
+releases still downloadable.
 
 ## Install
-
-This template is never released itself; a provider made from it is, under its
-own name. Pin that release in a machine profile, from whichever account holds
-it:
 
 ```yaml
 components:
   providers:
-    bme280-lab:
-      repo: <your-account>/anolis-provider-bme280-lab
+    hello-python:
+      repo: CameronBrooks11/anolis-provider-hello-python
       version: "0.1.0"
 ```
+
+The device, its config and its functions are the template's; see its
+[README](https://github.com/anolishq/anolis-provider-template-python#the-device).
 
 ## Licence
 

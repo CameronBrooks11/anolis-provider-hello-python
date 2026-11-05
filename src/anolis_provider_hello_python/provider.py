@@ -25,7 +25,7 @@ from typing import Any
 from anolis_provider_sdk import Arg, Category, Device, DeviceType, Function, Provider, Signal, ValueType, run
 
 try:
-    __version__ = version("anolis-provider-template-python")
+    __version__ = version("anolis-provider-hello-python")
 except PackageNotFoundError:  # a source tree that is not installed
     __version__ = "0.0.0"
 
@@ -58,7 +58,7 @@ HEATER = DeviceType(
 )
 
 CONFIG_SCHEMA: dict[str, Any] = {
-    "title": "anolis-provider-template-python config",
+    "title": "anolis-provider-hello-python config",
     "type": "object",
     "properties": {
         "devices": {
@@ -115,7 +115,7 @@ class Heater:
 
 
 class TemplateProvider(Provider):
-    name = "anolis-provider-template-python"
+    name = "anolis-provider-hello-python"
     version = __version__
     conformance_level = 2
     config_schema = CONFIG_SCHEMA

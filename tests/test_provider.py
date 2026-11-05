@@ -7,8 +7,8 @@ from typing import Any
 
 import pytest
 
-from anolis_provider_template_python import provider as mod
-from anolis_provider_template_python.provider import HEATER, Heater, TemplateProvider
+from anolis_provider_hello_python import provider as mod
+from anolis_provider_hello_python.provider import HEATER, Heater, TemplateProvider
 
 
 class Clock:
@@ -22,7 +22,7 @@ class Clock:
 @pytest.fixture
 def clock(monkeypatch: pytest.MonkeyPatch) -> Clock:
     c = Clock()
-    monkeypatch.setattr("anolis_provider_template_python.provider.time.monotonic", c)
+    monkeypatch.setattr("anolis_provider_hello_python.provider.time.monotonic", c)
     return c
 
 

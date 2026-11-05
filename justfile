@@ -1,4 +1,4 @@
-# anolis-provider-template-python dev commands. `check` + `test` are what CI runs.
+# anolis-provider-hello-python dev commands. `check` + `test` are what CI runs.
 
 # List available recipes
 default:
@@ -29,7 +29,7 @@ test:
 # Build the frozen single-file binary into dist/ (PyInstaller; for the host architecture)
 freeze:
     uv sync --locked --extra dev --extra freeze
-    uv run pyinstaller --clean --noconfirm packaging/anolis-provider-template-python.spec
+    uv run pyinstaller --clean --noconfirm packaging/anolis-provider-hello-python.spec
 
 # Rename the provider after "Use this template": just rename <kind> (e.g. bme280-lab)
 rename kind:

@@ -79,11 +79,11 @@ jobs:
       - name: Build the frozen binary
         run: |
           uv sync --locked --extra dev --extra freeze --python 3.13
-          uv run pyinstaller --clean --noconfirm packaging/anolis-provider-template-python.spec
+          uv run pyinstaller --clean --noconfirm packaging/anolis-provider-hello-python.spec
       # The release artifact, not the source install, under the harness: a module
       # or data file the freeze missed shows up here and nowhere else.
       - name: Conformance against the frozen binary
-        run: ANOLIS_PROVIDER_BIN="$PWD/dist/anolis-provider-template-python" uv run pytest -s tests/test_conformance.py
+        run: ANOLIS_PROVIDER_BIN="$PWD/dist/anolis-provider-hello-python" uv run pytest -s tests/test_conformance.py
 
   rename:
     name: Rename still builds

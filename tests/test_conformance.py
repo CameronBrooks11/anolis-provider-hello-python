@@ -27,7 +27,7 @@ EXPECTED_SKIPS: dict[str, str] = {}
 def test_provider_passes_the_harness(tmp_path: Path) -> None:
     bindir = str(Path(sys.executable).parent)
     harness = shutil.which("anolis-adpp-conformance", path=bindir)
-    provider = os.environ.get("ANOLIS_PROVIDER_BIN") or shutil.which("anolis-provider-template-python", path=bindir)
+    provider = os.environ.get("ANOLIS_PROVIDER_BIN") or shutil.which("anolis-provider-hello-python", path=bindir)
     assert harness and provider, "install the dev extra (uv sync --extra dev)"
     report = tmp_path / "report.xml"
     proc = subprocess.run(

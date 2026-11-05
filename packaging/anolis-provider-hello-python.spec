@@ -1,13 +1,13 @@
-# PyInstaller spec: one self-contained executable, bin/anolis-provider-template-python
+# PyInstaller spec: one self-contained executable, bin/anolis-provider-hello-python
 # in the release tarball. Build with `just freeze`; the result is
-# dist/anolis-provider-template-python.
+# dist/anolis-provider-hello-python.
 # -*- mode: python -*-
 
 from PyInstaller.utils.hooks import copy_metadata
 
 datas = (
     # importlib.metadata lookups: the provider and the SDK report their versions from these.
-    copy_metadata("anolis-provider-template-python")
+    copy_metadata("anolis-provider-hello-python")
     + copy_metadata("anolis-provider-sdk")
 )
 
@@ -22,7 +22,7 @@ exe = EXE(
     a.scripts,
     a.binaries,
     a.datas,
-    name="anolis-provider-template-python",
+    name="anolis-provider-hello-python",
     console=True,
     strip=False,
     upx=False,

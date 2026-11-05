@@ -1,5 +1,5 @@
 [project]
-name = "anolis-provider-template-python"
+name = "anolis-provider-hello-python"
 version = "0.1.0"
 description = "Template for an Anolis device provider in Python: simulated heaters on the Python provider SDK"
 readme = "README.md"
@@ -25,7 +25,7 @@ freeze = [
 ]
 
 [project.scripts]
-anolis-provider-template-python = "anolis_provider_template_python.provider:main"
+anolis-provider-hello-python = "anolis_provider_hello_python.provider:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -35,7 +35,7 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/anolis_provider_template_python"]
+packages = ["src/anolis_provider_hello_python"]
 
 [tool.ruff]
 line-length = 120
